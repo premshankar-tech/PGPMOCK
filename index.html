@@ -205,12 +205,11 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid 
 /* ================= DONE ================= */
 #scr-done{background:#e8f0fe;display:flex;justify-content:center;align-items:center}
 .done{background:#fff;width:1002px;padding:40px 36px 36px;text-align:center}
-.done > svg{width:180px;height:180px}
-.done h2{color:var(--brand);font-weight:500;font-size:37px;margin:20px 0 16px;line-height:50px}
+.done > svg{width:215px;height:215px}
+.done h2{color:var(--brand);font-weight:500;font-size:39px;margin:33px 0 25px;line-height:54px}
 .done table{width:100%;border-collapse:collapse;text-align:left;font-size:25px}
-.done td{height:45px;padding:0 12px;border-bottom:1px solid #e3e3e3}
+.done td{height:55px;padding:0 12px;border-bottom:1px solid #e3e3e3}
 .done td:first-child{font-weight:600;width:313px}
-.done tr.score td{color:var(--brand);font-weight:700}
 .exitbtn{margin-top:25px;background:#3e3ece;color:#fff;border:0;border-radius:29px;height:57px;width:453px;font-size:21px;letter-spacing:.02em}
 
 .toast{position:fixed;left:50%;top:16px;transform:translateX(-50%);z-index:90;background:#1f2133;color:#fff;font-size:18px;padding:12px 22px;border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.25);pointer-events:none}
@@ -238,7 +237,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid 
         <label for="roll">Login ID / Roll Number</label>
         <div class="field"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7a8296" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4.5 21c1.4-3.8 4.3-5.6 7.5-5.6s6.1 1.8 7.5 5.6"/></svg><input id="roll" autocomplete="off" placeholder="e.g. 2026-04417" value="HH45676560"></div>
         <label for="pwd">Password</label>
-        <div class="field"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7a8296" stroke-width="1.8"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></svg><input id="pwd" type="password" placeholder="Exam password" value="01011993"><button type="button" class="eye" id="eye" aria-label="Show password"></button></div>
+        <div class="field"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7a8296" stroke-width="1.8"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></svg><input id="pwd" type="password" placeholder="Exam password" value="CET@2026"><button type="button" class="eye" id="eye" aria-label="Show password"></button></div>
         <div class="err" id="loginErr" hidden></div>
         <button class="lbtn" type="submit">Login</button>
       </form>
@@ -601,7 +600,7 @@ function instructions(){const p=S.paper,n=p.sections.reduce((a,s)=>a+s.qs.length
  <li>Tick <b>Mark Review</b> to flag a question you want to revisit. Answered questions marked for review are evaluated.</li>
  <li>Some questions contain diagrams or graphs. Use the expand icon on the question, <b>OPTION ZOOM</b> for option images, and <b>A+ / A-</b> for text size.</li>
  <li>Click <b>SUBMIT</b> to see the exam summary before final submission. Once submitted, answers cannot be changed.</li>
- <li>This is a <b>mock exam</b> for practice. Your score is shown after you submit.</li></ol>`;}
+ <li>This is a <b>mock exam</b> for practice.</li></ol>`;}
 $("instLang").onchange=e=>$("instText").innerHTML=e.target.value?instructions():"";
 $("agree").onchange=e=>$("startBtn").disabled=!e.target.checked;
 $("startBtn").onclick=startExam;
@@ -679,10 +678,10 @@ $("sumSubmit").onclick=()=>modal("This Action cannot be changed.","Submit exam",
 
 function finish(auto){
   clearInterval(S.timer);closeModal();
-  const att=S.st.filter(s=>s.a!==null).length,tot=S.qs.length,ok=S.qs.filter((q,i)=>S.st[i].a===q.a).length;
-  $("doneTbl").innerHTML=[["Center Name","MHCET"],["Candidate Name",S.name],["Roll No",S.roll],["Exam Date",fmtDate(S.start)],["Total Questions",tot],["Total Attempted",pad(att)],["Total Not Attempted",pad(tot-att)],["Correct Answers",pad(ok)],["Wrong Answers",pad(att-ok)],["Score",`${ok} / ${tot}`]].map(([k,v])=>`<tr${k=="Score"?' class="score"':''}><td>${k}</td><td>: ${v}</td></tr>`).join("");
+  const att=S.st.filter(s=>s.a!==null).length,tot=S.qs.length;
+  $("doneTbl").innerHTML=[["Center Name","MHCET"],["Candidate Name",S.name],["Roll No",S.roll],["Exam Date",fmtDate(S.start)],["Total Questions",tot],["Total Attempted",pad(att)],["Total Not Attempted",pad(tot-att)]].map(([k,v])=>`<tr><td>${k}</td><td>: ${v}</td></tr>`).join("");
   show("scr-done");}
-$("exitBtn").onclick=()=>{$("roll").value="HH45676560";$("pwd").value="01011993";$("pwd").type="password";$("eye").innerHTML=EYE_OFF;show("scr-login");};
+$("exitBtn").onclick=()=>{$("roll").value="HH45676560";$("pwd").value="CET@2026";$("pwd").type="password";$("eye").innerHTML=EYE_OFF;show("scr-login");};
 document.addEventListener("keydown",e=>{if(e.key=="Enter"&&S.screen=="scr-login"&&!["INPUT","BUTTON"].includes(document.activeElement.tagName))$("loginForm").requestSubmit();});
 
 </script>
