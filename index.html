@@ -238,7 +238,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid 
         <label for="roll">Login ID / Roll Number</label>
         <div class="field"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7a8296" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4.5 21c1.4-3.8 4.3-5.6 7.5-5.6s6.1 1.8 7.5 5.6"/></svg><input id="roll" autocomplete="off" placeholder="e.g. 2026-04417" value="HH45676560"></div>
         <label for="pwd">Password</label>
-        <div class="field"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7a8296" stroke-width="1.8"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></svg><input id="pwd" type="password" placeholder="Exam password" value="CET@2026"><button type="button" class="eye" id="eye" aria-label="Show password"></button></div>
+        <div class="field"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7a8296" stroke-width="1.8"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></svg><input id="pwd" type="password" placeholder="Exam password" value="01011993"><button type="button" class="eye" id="eye" aria-label="Show password"></button></div>
         <div class="err" id="loginErr" hidden></div>
         <button class="lbtn" type="submit">Login</button>
       </form>
@@ -682,7 +682,7 @@ function finish(auto){
   const att=S.st.filter(s=>s.a!==null).length,tot=S.qs.length,ok=S.qs.filter((q,i)=>S.st[i].a===q.a).length;
   $("doneTbl").innerHTML=[["Center Name","MHCET"],["Candidate Name",S.name],["Roll No",S.roll],["Exam Date",fmtDate(S.start)],["Total Questions",tot],["Total Attempted",pad(att)],["Total Not Attempted",pad(tot-att)],["Correct Answers",pad(ok)],["Wrong Answers",pad(att-ok)],["Score",`${ok} / ${tot}`]].map(([k,v])=>`<tr${k=="Score"?' class="score"':''}><td>${k}</td><td>: ${v}</td></tr>`).join("");
   show("scr-done");}
-$("exitBtn").onclick=()=>{$("roll").value="HH45676560";$("pwd").value="CET@2026";$("pwd").type="password";$("eye").innerHTML=EYE_OFF;show("scr-login");};
+$("exitBtn").onclick=()=>{$("roll").value="HH45676560";$("pwd").value="01011993";$("pwd").type="password";$("eye").innerHTML=EYE_OFF;show("scr-login");};
 document.addEventListener("keydown",e=>{if(e.key=="Enter"&&S.screen=="scr-login"&&!["INPUT","BUTTON"].includes(document.activeElement.tagName))$("loginForm").requestSubmit();});
 
 </script>
